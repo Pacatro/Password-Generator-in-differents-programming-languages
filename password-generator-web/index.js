@@ -14,9 +14,8 @@ const generatePassword = () => {
     text.value = password;
 }
 
-const copy = () => {
+const copy = () => {   
     var text = document.getElementById('password-text');
     text.select();
-    text.setSelectionRange(0, 99999);
     document.execCommand('copy');
 }
