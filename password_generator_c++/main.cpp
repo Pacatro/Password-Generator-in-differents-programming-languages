@@ -22,7 +22,7 @@ string generatPassword(int lenght){
 
     for(int i = 0; i < lenght; i++){
         random = rand() % characters.size();
-        password += characters[random];
+        password += characters[random]; 
     }
 
     return password;

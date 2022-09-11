@@ -6,16 +6,28 @@ const generatePassword = () => {
 
     long = parseInt(long);
 
-    for(var i = 0; i<long; i++){
-        var random = Math.floor(Math.random() * characters.length);
-        password += characters.at(random);
+    if(long > 0){
+        for(var i = 0; i<long; i++){
+            var random = Math.floor(Math.random() * characters.length);
+            password += characters.at(random);
+        }
+      
+        text.value = password;
     }
-  
-    text.value = password;
+
+    else{ 
+        text.value = "You must write a lenght.";
+
+        setTimeout(() => {
+            text.value = ""
+        }, 2000);        
+    }
+
 }
 
-const copy = () => {   
+const copy = () => {
     var text = document.getElementById('password-text');
+
     text.select();
     document.execCommand('copy');
 }

@@ -1,36 +1,38 @@
 :root {
-    --shadow: 0.2em 0.2em 0.2em black;
-    --font: 'Cabin', sans-serif;
+    --shadow:  0.2em 0.2em 0.2em 0.3em #CACACA;
+    --font: 'Montserrat', sans-serif;
 }
   
 body {
-    background-color: #154360;
+    background-color: #ffffff;
 }
 
 .container {
     margin-top: 50px;
-    color: #fff;
+    color: rgb(36, 36, 36);
 }
 
 .Title {
-    margin-top: 100px;
+    margin: 0 auto;
+    margin-top: 50px;
     font-size: 40px;
     text-align: center;
-    text-shadow: var(--shadow);
     font-family: var(--font);
+    border-left: 2px solid;
+    border-right: 2px solid;
+    width: 900px;
 }
 
 .Description {
-    margin: 30px auto;
+    margin: 100px auto;
     width: 1000px;
     font-size: 25px;
-    text-shadow: var(--shadow);
     text-align: center;
     font-family: var(--font);
 }
 
 .Password {
-    margin: 80px auto;
+    margin: 70px auto;
     align-items: center;
     display: flex;
     justify-content: center;
@@ -42,6 +44,7 @@ body {
     background-color: white;
     border-radius: 20px;
     box-shadow: var(--shadow);
+    border: 2px solid;
 }
 
 .text-box {
@@ -55,7 +58,7 @@ body {
 .lenght-input { 
     height: 50px;
     width: 70px;
-    font-size: 20px;
+    font-size: 15px;
     margin-left: 5px;
     font-family: var(--font);
     border-radius: 15px;
@@ -75,18 +78,33 @@ body {
 }
 
 .Generate-button-Div {
-    margin: 0 auto;
+    margin: 30px auto;
     text-align: center;
 }
 
 .Generate-button {
-    background-color: white;
+    background-color: transparent;
+    padding: 5px;
     height: 80px;
     width: 200px;
     font-size: 20px;
+    font-weight: semibold;
     font-family: var(--font);
+    border: 2px solid rgb(216, 216, 216);
     border-radius: 25px;
-    box-shadow: var(--shadow);
+    transition: all 1s ease;
+    box-shadow: .5rem .5rem 1rem #CACACA,
+    -.5rem -.5rem 1rem #fff;
     text-align: center;
     cursor: pointer;
+}
+
+.Generate-button:hover {
+    box-shadow: .5rem .5rem 1rem #fff,
+    -.5rem -.5rem 1rem #CACACA;
+}
+
+.Generate-button:active {
+    box-shadow: inset .3rem .3rem 1rem #fff,
+    inset -.3rem -.3rem 1rem #CACACA;
 }
