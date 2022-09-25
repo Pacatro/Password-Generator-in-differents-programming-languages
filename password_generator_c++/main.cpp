@@ -12,10 +12,8 @@
 
 #endif
 
-using namespace std;
-
-string generatPassword(int lenght){
-    string characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#@=<>-;\\//", password = "";
+std::string generatPassword(int lenght){
+    std::string characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#@=<>-;\\//", password = "";
     int random;
 
     srand(time(NULL));
@@ -28,25 +26,47 @@ string generatPassword(int lenght){
     return password;
 }
 
-void generateFile(string password, string reminder){
-    ofstream file;
+bool reminder_in_file(std::string reminder){
+    std::ifstream file;
+    std::string line;
+    file.open("passwords.txt", std::ios::in);
 
-    file.open("passwords.txt", ios::app);
-
-    if(file.is_open() == false){
-        cout<<"ERROR, CAN'T OPEN THE FILE"<<endl;
-        return;
+    if(!file.is_open()){
+        std::cout<<"ERROR, CAN'T OPEN THE FILE\n\n";
+        exit(EXIT_FAILURE);
     }
 
-    file<<reminder<<" --> "<<password<<endl;
+    while(getline(file, line)){
+        file>>line;
+        std::cout<<line;
+        if(line.find(reminder)){
+            return true;
+        }
+    }
 
-    cout<<"Your password "<<'('<<password<<')'<<" has been added to the text file ('passwords.txt') succesfully."<<endl;
+    return false;
+
+}
+
+void generateFile(std::string password, std::string reminder){
+    std::ofstream file;
+
+    file.open("passwords.txt", std::ios::app);
+
+    if(!file.is_open()){
+        std::cout<<"ERROR, CAN'T OPEN THE FILE\n\n";
+        exit(EXIT_FAILURE);
+    }
+
+    file<<reminder<<" --> "<<password<<"\n";
+
+    std::cout<<"Your password "<<'('<<password<<')'<<" has been added to the text file ('passwords.txt') succesfully.\n";
 }
 
 void menu(){
-    cout<<"\n-----Password Generator-----"<<endl;
-    cout<<"\n1. Generate password"<<endl;
-    cout<<"2. Exit"<<endl;
+    std::cout<<"\n-----Password Generator-----\n";
+    std::cout<<"\n1. Generate password\n";
+    std::cout<<"2. Exit\n";
 }
 
 int main(){
@@ -55,42 +75,51 @@ int main(){
 
     int option, length;
     bool init = true;
-    string password, reminder;
+    std::string password, reminder;
     char choose;
     
     while(init){    
         menu();
-        cout<<"\nOption -> ";
-        cin>>option;
+        std::cout<<"\nOption -> ";
+        std::cin>>option;
 
         switch(option){
             case 1:
 
-                cout<<"\nLength of your password -> ";
-                cin>>length;
-                cout<<endl;
+                std::cout<<"\nLength of your password -> ";
+                std::cin>>length;
+                std::cout<<"\n";
 
                 password = generatPassword(length);
 
-                cout<<"Here is your password: "<<password<<"\n"<<endl;
+                std::cout<<"Here is your password: "<<password<<"\n\n";
                 
-                cout<<"Save password in a text file?"<<endl;
-                cout<<"\nYes (Y)    No (N)"<<endl;
+                std::cout<<"Save password in a text file?\n";
+                std::cout<<"\nYes (Y)    No (N)\n";
 
-                cout<<"\nChoose -> ";
-                cin>>choose;
+                std::cout<<"\nChoose -> ";
+                std::cin>>choose;
 
                 choose = toupper(choose);
 
                 if(choose == 'Y'){
-                    cout<<"\nWrite something for remember your password: ";
-                    cin>>reminder;
-                    cout<<endl;
+                    std::cout<<"\nWrite something for remember your password: ";
+                    std::cin>>reminder;
+                    std::cout<<"\n";
 
-                    generateFile(password, reminder);
+                    if(reminder_in_file(reminder)){
+                        std::cout<<"\nERROR, THERE IS A PASSWORD WITH SAME REMINDER.\n";
+                        system("pause");
+                        system(COMMAND);
+                    }
+
+                    else{
+                        generateFile(password, reminder);
+                    }
+                    
                 }
 
-                cout<<endl;
+                std::cout<<"\n";
                 system("pause");
                 system(COMMAND);
 
@@ -103,4 +132,6 @@ int main(){
             break;
         }
     }
+
+    exit(EXIT_SUCCESS);
 }
