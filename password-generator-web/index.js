@@ -1,5 +1,6 @@
 const generatePassword = () => {
-    const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#@=<>-;\\//';
+    const low_chars = 'abcdefghijklmnopqrstuvwxyz', high_chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', numbers = '0123456789', symbols = '#@=<>-;\\//';
+    var characters = low_chars+high_chars+numbers+symbols;
     var password = '';
     var text = document.getElementById('password-text');
     var long = document.getElementById('long').value;
