@@ -37,20 +37,20 @@ body {
     display: flex;
     justify-content: center;
     height: 80px;
-    width: 900px;
+    width: 1000px;
     font-size: 40px;
     color: gray;
     font-family: var(--font);
     background-color: white;
     border-radius: 20px;
     box-shadow: var(--shadow);
-    border: 2px solid;
+    border: 2px solid black;
 }
 
 .text-box {
     height: 50px;
-    width: 700px;
-    font-size: 35px;
+    width: 800px;
+    font-size: 30px;
     font-family: var(--font);
     border: none;
 }
@@ -58,12 +58,12 @@ body {
 .lenght-input { 
     height: 50px;
     width: 70px;
-    font-size: 15px;
+    font-size: 17px;
     margin-left: 5px;
     font-family: var(--font);
     border-radius: 15px;
     background-color: white;
-    border: 2px solid;
+    border: 2px solid black;
     text-align: center;
 }   
 
@@ -77,34 +77,44 @@ body {
     background-color: white;
 }
 
-.Generate-button-Div {
-    margin: 30px auto;
-    text-align: center;
+.Button-options-div {
+    display: flex;
+    justify-content: center;
 }
 
+.Options-div {
+    margin: 10px;
+    font-family: var(--font);
+    font-size: 18px;
+}
+
+input[type = "checkbox"] {
+    width: 18px;
+    height: 18px;
+}
 .Generate-button {
     background-color: transparent;
-    padding: 5px;
     height: 80px;
     width: 200px;
     font-size: 20px;
     font-weight: semibold;
     font-family: var(--font);
-    border: 2px solid rgb(216, 216, 216);
+    border: 2px solid black;
     border-radius: 25px;
     transition: all 1s ease;
-    box-shadow: .5rem .5rem 1rem #CACACA,
+    box-shadow: .5rem .5rem 1rem gray,
     -.5rem -.5rem 1rem #fff;
     text-align: center;
     cursor: pointer;
+    margin: 20px;
 }
 
 .Generate-button:hover {
     box-shadow: .5rem .5rem 1rem #fff,
-    -.5rem -.5rem 1rem #CACACA;
+    -.5rem -.5rem 1rem gray;
 }
 
 .Generate-button:active {
     box-shadow: inset .3rem .3rem 1rem #fff,
-    inset -.3rem -.3rem 1rem #CACACA;
+    inset -.3rem -.3rem 1rem gray;
 }
