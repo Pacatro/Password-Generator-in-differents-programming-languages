@@ -60,9 +60,7 @@ const checkCombinations = (low_chars, high_chars, numbers, symbols, checkbox_hig
         return low_chars + high_chars + numbers + symbols;
     }
 
-    else{
-        return 'empty';
-    }
+    return 'empty';
 }
 
 const generatePassword = () => {
