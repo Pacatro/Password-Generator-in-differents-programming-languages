@@ -1,7 +1,7 @@
 all: compile run
 
-compile: main.cpp
-	g++ main.cpp -o main.exe
+compile: main.cc
+	g++ main.cc functions.cc -o main.exe
 
 run:
 	./main.exe

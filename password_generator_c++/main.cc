@@ -1,73 +1,7 @@
 #include <iostream>
-#include <fstream>
 #include <cstdlib>
 #include <string>
-#include <ctime>
-
-#ifdef WIN32
-    #define COMMAND "cls"
-
-#else
-    #define COMMAND "clear"
-
-#endif
-
-std::string generatPassword(int lenght){
-    std::string characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#@=<>-;\\//", password = "";
-    int random;
-
-    srand(time(NULL));
-
-    for(int i = 0; i < lenght; i++){
-        random = rand() % characters.size();
-        password += characters[random]; 
-    }
-
-    return password;
-}
-
-bool reminder_in_file(std::string reminder){
-    std::ifstream file;
-    std::string line;
-    file.open("passwords.txt", std::ios::in);
-
-    if(!file.is_open()){
-        std::cout<<"ERROR, CAN'T OPEN THE FILE\n\n";
-        exit(EXIT_FAILURE);
-    }
-
-    while(getline(file, line)){
-        file>>line;
-        std::cout<<line;
-        if(line.find(reminder)){
-            return true;
-        }
-    }
-
-    return false;
-
-}
-
-void generateFile(std::string password, std::string reminder){
-    std::ofstream file;
-
-    file.open("passwords.txt", std::ios::app);
-
-    if(!file.is_open()){
-        std::cout<<"ERROR, CAN'T OPEN THE FILE\n\n";
-        exit(EXIT_FAILURE);
-    }
-
-    file<<reminder<<" --> "<<password<<"\n";
-
-    std::cout<<"Your password "<<'('<<password<<')'<<" has been added to the text file ('passwords.txt') succesfully.\n";
-}
-
-void menu(){
-    std::cout<<"\n-----Password Generator-----\n";
-    std::cout<<"\n1. Generate password\n";
-    std::cout<<"2. Exit\n";
-}
+#include "functions.h"
 
 int main(){
 
@@ -126,6 +60,13 @@ int main(){
             break;
             
             case 2:
+                std::cout<<"\n-----Passwords.txt-----\n";
+                read_file();
+                system("pause");
+                system(COMMAND);
+            break;
+
+            case 3:
 
                 init = false;
             
