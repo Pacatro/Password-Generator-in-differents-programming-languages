@@ -102,16 +102,49 @@ const copy = () => {
 const light_mode = () => {
     var element = document.body;
     var container = document.getElementById("cont");
+    var button = document.getElementById("generate-button");
+    var password_div = document.getElementById("password-div");
+    var password_text = document.getElementById("password-text");
+    var lenght_box = document.getElementById("long");
+    var copy_button = document.getElementById("copy-button");
+
+    button.style.color = "black";
+    button.style.backgroundColor = "white";
+    button.style.borderColor = "black";
+    password_div.style.backgroundColor = "white";
+    password_div.style.borderColor = "black";
+    password_text.style.color = "black";
+    password_text.style.backgroundColor = "white";
+    lenght_box.style.backgroundColor = "white";
+    lenght_box.style.color = "black";
+    lenght_box.style.borderColor = "black";
+    copy_button.style.backgroundImage = "url(assets/copy_icon_lm.png)";
+    copy_button.style.backgroundColor = "white";
     container.style.color = "black";
     element.className = "light-mode";
 }
 
 const dark_mode = () => {
-    var element = document.body;
+    var body = document.body;
     var container = document.getElementById("cont");
     var button = document.getElementById("generate-button");
-    button.style.color = "black";
-    button.style.backgroundColor = "white";
+    var password_div = document.getElementById("password-div");
+    var password_text = document.getElementById("password-text");
+    var lenght_box = document.getElementById("long");
+    var copy_button = document.getElementById("copy-button");
+
+    button.style.color = "white";
+    button.style.backgroundColor = "#2D2D2D";
+    button.style.borderColor = "white";
+    password_div.style.backgroundColor = "#2D2D2D";
+    password_div.style.borderColor = "white";
+    password_text.style.color = "white";
+    password_text.style.backgroundColor = "#2D2D2D";
+    lenght_box.style.backgroundColor = "#2D2D2D";
+    lenght_box.style.color = "white";
+    lenght_box.style.borderColor = "white";
+    copy_button.style.backgroundImage = "url(assets/copy_icon_bm.png)"
     container.style.color = "white";
-    element.className = "dark-mode";
+    copy_button.style.backgroundColor = "#2D2D2D";
+    body.className = "dark-mode";
 }
