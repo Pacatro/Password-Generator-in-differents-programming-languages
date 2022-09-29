@@ -14,11 +14,11 @@
     <body>
         <div class = "container" id = "cont">
             
-            <div class = "Title">
-                <h1>Passwords Generator</h1>
+            <div class = "Title" id = "title-div">
+                <h1 id = "title">Passwords Generator</h1>
             </div>
 
-            <div class = "Description">
+            <div class = "Description" id = "description-div">
                 <p>Create passwords in just one click, the only thing you need to do is select what type (number, symbols...) and how many characters do you want for your password, as long as you want.</p>
             </div>
 
@@ -30,7 +30,7 @@
 
             <div class = "Button-options-div">
                 <div class = "Generate-button-Div">
-                    <button class = "Generate-button" onClick = "generatePassword()">Generate password</button>
+                    <button class = "Generate-button" id = "generate-button"onClick = "generatePassword()">Generate password</button>
                 </div>
 
                 <div class = "Options-div">
@@ -56,6 +56,12 @@
 
             </div>
                 
+            <div class = "mode-buttons">
+                    <button class = "light-mode-button" onClick = "light_mode()">​🌝​</button>
+
+                    <button class = "dark-mode-button" onClick = "dark_mode()">​🌚​​</button>
+            </div>
+
         </div>
         <script src = index.js></script>
     </body>

@@ -74,7 +74,7 @@ const generatePassword = () => {
 
     long = parseInt(long);
 
-    if(long > 0 && characters !== 'empty'){
+    if(long > 0 && characters !== 'empty' && long !== 13){
         for(var i = 0; i<long; i++){
             var random = Math.floor(Math.random() * characters.length);
             password += characters.at(random);
@@ -97,4 +97,21 @@ const copy = () => {
 
     text.select();
     document.execCommand('copy');
+}
+
+const light_mode = () => {
+    var element = document.body;
+    var container = document.getElementById("cont");
+    container.style.color = "black";
+    element.className = "light-mode";
+}
+
+const dark_mode = () => {
+    var element = document.body;
+    var container = document.getElementById("cont");
+    var button = document.getElementById("generate-button");
+    button.style.color = "black";
+    button.style.backgroundColor = "white";
+    container.style.color = "white";
+    element.className = "dark-mode";
 }

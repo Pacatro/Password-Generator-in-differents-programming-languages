@@ -1,10 +1,20 @@
 :root {
-    --shadow:  0.2em 0.2em 0.2em 0.3em #CACACA;
+    --shadow:  0.1em 0.1em 0.1em 0.1em #CACACA;
     --font: 'Montserrat', sans-serif;
 }
   
 body {
     background-color: #ffffff;
+}
+
+.dark-mode {
+    background-color: #0E0F0F;
+    color: white;
+}
+
+.light-mode {
+    background-color: #ffffff;
+    color: black;
 }
 
 .container {
@@ -91,15 +101,17 @@ body {
 input[type = "checkbox"] {
     width: 18px;
     height: 18px;
+    cursor: pointer;
 }
 .Generate-button {
-    background-color: transparent;
+    background-color: white;
     height: 80px;
     width: 200px;
     font-size: 20px;
     font-weight: semibold;
     font-family: var(--font);
-    border: 2px solid black;
+    border: 2px solid;
+    border-color: black;
     border-radius: 25px;
     transition: all 1s ease;
     box-shadow: .5rem .5rem 1rem gray,
@@ -107,6 +119,7 @@ input[type = "checkbox"] {
     text-align: center;
     cursor: pointer;
     margin: 20px;
+    color: black;
 }
 
 .Generate-button:hover {
@@ -118,3 +131,32 @@ input[type = "checkbox"] {
     box-shadow: inset .3rem .3rem 1rem #fff,
     inset -.3rem -.3rem 1rem gray;
 }
+
+.mode-buttons {
+    margin-top: 30px;
+    margin-left: 90px;
+}
+
+.light-mode-button {
+    margin-top: 20px;
+    height: 90px;
+    width: 90px;
+    font-size: 40px;
+    background-color: #0E0F0F;
+    border-color: white;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.dark-mode-button {
+    margin-top: 20px;
+    height: 90px;
+    width: 90px;
+    font-size: 40px;
+    background-color: white;
+    border-color: #0E0F0F;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+
