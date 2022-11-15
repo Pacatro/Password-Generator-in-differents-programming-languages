@@ -20,18 +20,18 @@ std::string generatPassword(int lenght){
 }
 
 void read_file(){
-    std::ifstream file;
     std::string line;
+    std::ifstream file;
 
-    file.open("passwords.txt", std::ios::in);
+    file.open("passwords.txt");
 
     if(!file.is_open()){
         std::cout<<"ERROR, CAN'T OPEN THE FILE\n\n";
         exit(EXIT_FAILURE);
     }
 
-    while(file.eof()){
-        file>>line;
+    while(!file.eof()){
+        getline(file, line);
         std::cout<<line<<"\n";
     }
 

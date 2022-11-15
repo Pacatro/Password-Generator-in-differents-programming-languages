@@ -54,7 +54,7 @@ int main(){
                 }
 
                 std::cout<<"\n";
-                system("pause");
+                //system("pause");
                 system(COMMAND);
 
             break;
@@ -62,7 +62,7 @@ int main(){
             case 2:
                 std::cout<<"\n-----Passwords.txt-----\n";
                 read_file();
-                system("pause");
+                //system("pause");
                 system(COMMAND);
             break;
 
