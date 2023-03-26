@@ -10,6 +10,7 @@ const url = 'http://localhost:' + port
 
 app.use('/', express.static(path.join(__dirname, '../client')))
 app.use('/save', express.static(path.join(__dirname, '../client/save_form')))
+app.use('/account', express.static(path.join(__dirname, '../client/account_form')))
 app.use('/', router)
 
 app.listen(port, () => {

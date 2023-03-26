@@ -73,6 +73,7 @@ const light_mode = () => {
     let save_button = document.getElementById("save")
     let light_mode_button = document.getElementById("light-button")
     let dark_mode_button = document.getElementById("dark-button")
+    let account_button = document.getElementById("account")
 
     button.style.color = "black"
     button.style.backgroundColor = "white"
@@ -96,6 +97,9 @@ const light_mode = () => {
     dark_mode_button.style.backgroundColor = "white"
     dark_mode_button.style.color = "black"
     dark_mode_button.style.borderColor = "black"
+    account_button.style.backgroundColor = "white"
+    account_button.style.color = "black"
+    account_button.style.borderColor = "black"
     element.className = "light-mode"
 }
 
@@ -110,6 +114,7 @@ const dark_mode = () => {
     let save_button = document.getElementById("save")
     let light_mode_button = document.getElementById("light-button")
     let dark_mode_button = document.getElementById("dark-button")
+    let account_button = document.getElementById("account")
 
     button.style.color = "white"
     button.style.backgroundColor = "#2D2D2D"
@@ -133,5 +138,8 @@ const dark_mode = () => {
     dark_mode_button.style.backgroundColor = "#2D2D2D"
     dark_mode_button.style.color = "white"
     dark_mode_button.style.borderColor = "white"
+    account_button.style.backgroundColor = "#2D2D2D"
+    account_button.style.color = "white"
+    account_button.style.borderColor = "white"
     body.className = "dark-mode"
 }

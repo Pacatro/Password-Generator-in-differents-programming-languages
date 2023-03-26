@@ -1,6 +1,7 @@
 const { Router } = require('express')
 const bodyParser = require('body-parser')
 const urlencodedParser = bodyParser.urlencoded({ extended: true })
+const User = require('../classes/user')
 
 const router = Router()
 
@@ -26,6 +27,15 @@ router.post('/save', urlencodedParser, (req, res) => {
     console.log('Reminder:', reminder)
 
     res.redirect('/')
+})
+
+router.post('/account', urlencodedParser, (req, res) => {
+    username = req.body.username
+    private_key = req.body.private_key
+
+    let user = new User(username, private_key)
+
+    console.log(user.is_in_db())
 })
 
 module.exports = router

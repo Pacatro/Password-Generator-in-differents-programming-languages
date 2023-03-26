@@ -165,3 +165,16 @@ input[type = "checkbox"] {
     cursor: pointer;
     font-family: var(--font);
 }
+
+.account-button {
+    transition: all 1s ease;
+    margin-top: 20px;
+    height: 50px;
+    width: 150px;
+    font-size: 25px;
+    background-color: white;
+    border-color: black;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: var(--font);
+}

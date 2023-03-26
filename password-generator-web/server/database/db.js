@@ -1,11 +1,13 @@
-const mysql = require('mysql2')
+const mysql = require('mysql2/promise')
 const config = require('../config/config')
 
-const connection = mysql.createConnection({
+const pool = mysql.createPool({
     host: config.DB_HOST,
     user: config.DB_USER,
     password: config.DB_PASS,
     database: config.DB_NAME,
 })
 
-module.exports = connection
+console.log(config.DB_USER)
+
+module.exports = pool
