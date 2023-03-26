@@ -13,13 +13,41 @@ class User {
         }
     }
 
-    async is_in_db(){
-        const [result] = await pool.query(`SELECT user, private_key FROM users WHERE user = ${this.#username} and private_key = ${this.#private_key};`)
+    async is_in_db(){    
+        const [result] = await pool.query(
+            `SELECT * FROM users WHERE user = '${this.#username}' AND private_key = '${this.#private_key}';`
+        )
+        
+        console.log(result)
 
-        if(result.length === 0)
-            return false
+        return result.length > 0
+    }
 
-        return true
+    async register(){
+        try {
+            await pool.query(
+                `INSERT INTO users(user, private_key) VALUES ('${this.#username}', '${this.#private_key}');`
+            )
+        } catch(err) {
+            throw err
+        }
+    }
+
+    async add_pass(reminder, gen_pass){
+        try {
+            const [result] = await pool.query(
+                `SELECT id FROM users WHERE user = '${this.#username}' AND private_key = '${this.#private_key}';`
+            )
+
+            let id = result[0].id
+
+            await pool.query(
+                `INSERT INTO passwords(user_id, reminder, generated_pass) VALUES (${id}, '${reminder}', '${gen_pass}');`
+            )
+
+        } catch(err) {
+            throw err
+        }
     }
 
     get username() {return this.#username}

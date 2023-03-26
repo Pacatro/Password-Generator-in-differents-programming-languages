@@ -16,26 +16,39 @@ router.post('/get_data', urlencodedParser, (req, res) => {
     res.redirect('/save')
 })
 
-router.post('/save', urlencodedParser, (req, res) => {
+router.post('/save', urlencodedParser, async (req, res) => {
     username = req.body.username
     private_key = req.body.private_key
     reminder = req.body.reminder
 
-    console.log('Password:', gen_pass)
-    console.log('Username:', username)
-    console.log('Private key:', private_key)
-    console.log('Reminder:', reminder)
+    let user = new User(username, private_key)
+
+    const found = await user.is_in_db()
+
+    if(found){
+       user.add_pass(reminder, gen_pass)
+    } else {
+        return res.redirect('/account')
+    }
 
     res.redirect('/')
 })
 
-router.post('/account', urlencodedParser, (req, res) => {
+router.post('/account', urlencodedParser, async (req, res) => {
     username = req.body.username
     private_key = req.body.private_key
 
     let user = new User(username, private_key)
 
-    console.log(user.is_in_db())
+    const found = await user.is_in_db()
+
+    if(!found){
+        user.register()
+    } else {
+        return res.send("YA EXISTE")
+    }
+
+    res.redirect('/')
 })
 
 module.exports = router
