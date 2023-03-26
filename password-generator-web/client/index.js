@@ -1,102 +1,61 @@
-const checkCombinations = (low_chars, high_chars, numbers, symbols, checkbox_highLetters, checkbox_lowLetters, checkbox_numbers, checkbox_symbols) => {
-
-    if(!checkbox_lowLetters.checked && checkbox_highLetters.checked && checkbox_numbers.checked && checkbox_symbols.checked){
-        return high_chars + numbers + symbols;
-    }
-
-    else if(checkbox_lowLetters.checked && !checkbox_highLetters.checked && checkbox_numbers.checked && checkbox_symbols.checked){
-        return low_chars + numbers + symbols;
-    }
-
-    else if(checkbox_lowLetters.checked && checkbox_highLetters.checked && !checkbox_numbers.checked && checkbox_symbols.checked){
-        return low_chars + high_chars + symbols;
-    }
-
-    else if(checkbox_lowLetters.checked && checkbox_highLetters.checked && checkbox_numbers.checked && !checkbox_symbols.checked){
-        return low_chars + numbers + high_chars;
-    }
-
-    else if(!checkbox_lowLetters.checked && !checkbox_highLetters.checked && checkbox_numbers.checked && checkbox_symbols.checked){
-        return numbers + symbols;
-    }
-
-    else if(checkbox_lowLetters.checked && checkbox_highLetters.checked && !checkbox_numbers.checked && !checkbox_symbols.checked){
-        return low_chars + high_chars;
-    }
-
-    else if(!checkbox_lowLetters.checked && checkbox_highLetters.checked && !checkbox_numbers.checked && checkbox_symbols.checked){
-        return high_chars + symbols;
-    }
-
-    else if(!checkbox_lowLetters.checked && checkbox_highLetters.checked && checkbox_numbers.checked && !checkbox_symbols.checked){
-        return numbers + high_chars;
-    }
-    
-    else if(checkbox_lowLetters.checked && !checkbox_highLetters.checked && !checkbox_numbers.checked && checkbox_symbols.checked){
-        return symbols + low_chars;
-    }
-
-    else if(checkbox_lowLetters.checked && !checkbox_highLetters.checked && checkbox_numbers.checked && !checkbox_symbols.checked){
-        return numbers + low_chars;
-    }
-
-    else if(!checkbox_lowLetters.checked && !checkbox_highLetters.checked && !checkbox_numbers.checked && checkbox_symbols.checked){
-        return symbols;
-    }
-
-    else if(!checkbox_lowLetters.checked && !checkbox_highLetters.checked && checkbox_numbers.checked && !checkbox_symbols.checked){
-        return numbers;
-    }
-
-    else if(checkbox_lowLetters.checked && !checkbox_highLetters.checked && !checkbox_numbers.checked && !checkbox_symbols.checked){
-        return low_chars;
-    }
-
-    else if(!checkbox_lowLetters.checked && checkbox_highLetters.checked && !checkbox_numbers.checked && !checkbox_symbols.checked){
-        return high_chars;
-    }
-
-    else if(checkbox_lowLetters.checked && checkbox_highLetters.checked && checkbox_numbers.checked && checkbox_symbols.checked){
-        return low_chars + high_chars + numbers + symbols;
-    }
-
-    return 'empty';
+const checkCombinations = (checkbox_highLetters, checkbox_lowLetters, checkbox_numbers, checkbox_symbols) => {
+    const low_chars = 'abcdefghijklmnopqrstuvwxyz'
+    const high_chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    const numbers = '0123456789'
+    const symbols = '#@=<>-+*;\\//'
+  
+    const selections = [
+        { chars: low_chars, selected: checkbox_lowLetters.checked },
+        { chars: high_chars, selected: checkbox_highLetters.checked },
+        { chars: numbers, selected: checkbox_numbers.checked },
+        { chars: symbols, selected: checkbox_symbols.checked },
+    ]
+  
+    const output = selections
+      .filter((selection) => selection.selected)
+      .map((selection) => selection.chars)
+      .join('')
+  
+    return output.length > 0 ? output : 'empty'
 }
 
 const generatePassword = () => {
+    let checkbox_lowLetters = document.getElementById('lowchar-check') 
+    let checkbox_highLetters = document.getElementById('highchar-check') 
+    let checkbox_numbers = document.getElementById('number-check') 
+    let checkbox_symbols = document.getElementById('symbol-check') 
+    let characters = '' 
+    let password = '' 
+    let text = document.getElementById('password-text') 
+    let long = document.getElementById('long').value
 
-    const low_chars = 'abcdefghijklmnopqrstuvwxyz', high_chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', numbers = '0123456789', symbols = '#@=<>-+*;\\//';
-    var checkbox_lowLetters = document.getElementById('lowchar-check'), checkbox_highLetters = document.getElementById('highchar-check'), 
-    checkbox_numbers = document.getElementById('number-check'), checkbox_symbols = document.getElementById('symbol-check'), 
-    characters = '', password = '', text = document.getElementById('password-text'), long = document.getElementById('long').value;
+    characters = checkCombinations(checkbox_highLetters, checkbox_lowLetters, checkbox_numbers, checkbox_symbols)
 
-    characters = checkCombinations(low_chars, high_chars, numbers, symbols, checkbox_highLetters, checkbox_lowLetters, checkbox_numbers, checkbox_symbols)
-
-    long = parseInt(long);
+    long = parseInt(long)
 
     if(long > 0 && characters !== 'empty' && long !== 13){
-        for(var i = 0; i<long; i++){
-            var random = Math.floor(Math.random() * characters.length);
-            password += characters.at(random);
+        for(let i = 0; i<long; i++){
+            let random = Math.floor(Math.random() * characters.length)
+            password += characters.at(random)
         }
       
-        text.value = password;
+        text.value = password
 
     } else{ 
-        text.value = "You must write a lenght or check an option.";
+        text.value = "You must write a lenght or check an option."
 
         setTimeout(() => {
             text.value = ""
-        }, 2000);        
+        }, 2000)        
     }
    
 }
 
 const copy = () => {
-    var text = document.getElementById('password-text');
+    let text = document.getElementById('password-text')
 
-    text.select();
-    document.execCommand('copy');
+    text.select()
+    document.execCommand('copy')
 }
 
 /*----------------------
@@ -104,51 +63,75 @@ LIGHT AND DARK MODE
 ----------------------*/
 
 const light_mode = () => {
-    var element = document.body;
-    var container = document.getElementById("cont");
-    var button = document.getElementById("generate-button");
-    var password_div = document.getElementById("password-div");
-    var password_text = document.getElementById("password-text");
-    var lenght_box = document.getElementById("long");
-    var copy_button = document.getElementById("copy-button");
+    let element = document.body
+    let container = document.getElementById("cont")
+    let button = document.getElementById("generate-button")
+    let password_div = document.getElementById("password-div")
+    let password_text = document.getElementById("password-text")
+    let lenght_box = document.getElementById("long")
+    let copy_button = document.getElementById("copy-button")
+    let save_button = document.getElementById("save")
+    let light_mode_button = document.getElementById("light-button")
+    let dark_mode_button = document.getElementById("dark-button")
 
-    button.style.color = "black";
-    button.style.backgroundColor = "white";
-    button.style.borderColor = "black";
-    password_div.style.backgroundColor = "white";
-    password_div.style.borderColor = "black";
-    password_text.style.color = "black";
-    password_text.style.backgroundColor = "white";
-    lenght_box.style.backgroundColor = "white";
-    lenght_box.style.color = "black";
-    lenght_box.style.borderColor = "black";
-    copy_button.style.backgroundImage = "url(assets/copy_icon_lm.png)";
-    copy_button.style.backgroundColor = "white";
-    container.style.color = "black";
-    element.className = "light-mode";
+    button.style.color = "black"
+    button.style.backgroundColor = "white"
+    button.style.borderColor = "black"
+    password_div.style.backgroundColor = "white"
+    password_div.style.borderColor = "black"
+    password_text.style.color = "black"
+    password_text.style.backgroundColor = "white"
+    lenght_box.style.backgroundColor = "white"
+    lenght_box.style.color = "black"
+    lenght_box.style.borderColor = "black"
+    copy_button.style.backgroundImage = "url(assets/copy_icon_lm.png)"
+    copy_button.style.backgroundColor = "white"
+    container.style.color = "black"
+    save_button.style.backgroundColor = "white"
+    save_button.style.color = "black"
+    save_button.style.borderColor = "black"
+    light_mode_button.style.backgroundColor = "white"
+    light_mode_button.style.color = "black"
+    light_mode_button.style.borderColor = "black"
+    dark_mode_button.style.backgroundColor = "white"
+    dark_mode_button.style.color = "black"
+    dark_mode_button.style.borderColor = "black"
+    element.className = "light-mode"
 }
 
 const dark_mode = () => {
-    var body = document.body;
-    var container = document.getElementById("cont");
-    var button = document.getElementById("generate-button");
-    var password_div = document.getElementById("password-div");
-    var password_text = document.getElementById("password-text");
-    var lenght_box = document.getElementById("long");
-    var copy_button = document.getElementById("copy-button");
+    let body = document.body
+    let container = document.getElementById("cont")
+    let button = document.getElementById("generate-button")
+    let password_div = document.getElementById("password-div")
+    let password_text = document.getElementById("password-text")
+    let lenght_box = document.getElementById("long")
+    let copy_button = document.getElementById("copy-button")
+    let save_button = document.getElementById("save")
+    let light_mode_button = document.getElementById("light-button")
+    let dark_mode_button = document.getElementById("dark-button")
 
-    button.style.color = "white";
-    button.style.backgroundColor = "#2D2D2D";
-    button.style.borderColor = "white";
-    password_div.style.backgroundColor = "#2D2D2D";
-    password_div.style.borderColor = "white";
-    password_text.style.color = "white";
-    password_text.style.backgroundColor = "#2D2D2D";
-    lenght_box.style.backgroundColor = "#2D2D2D";
-    lenght_box.style.color = "white";
-    lenght_box.style.borderColor = "white";
+    button.style.color = "white"
+    button.style.backgroundColor = "#2D2D2D"
+    button.style.borderColor = "white"
+    password_div.style.backgroundColor = "#2D2D2D"
+    password_div.style.borderColor = "white"
+    password_text.style.color = "white"
+    password_text.style.backgroundColor = "#2D2D2D"
+    lenght_box.style.backgroundColor = "#2D2D2D"
+    lenght_box.style.color = "white"
+    lenght_box.style.borderColor = "white"
     copy_button.style.backgroundImage = "url(assets/copy_icon_bm.png)"
-    container.style.color = "white";
-    copy_button.style.backgroundColor = "#2D2D2D";
-    body.className = "dark-mode";
+    container.style.color = "white"
+    copy_button.style.backgroundColor = "#2D2D2D"
+    save_button.style.backgroundColor = "#2D2D2D"
+    save_button.style.color = "white"
+    save_button.style.borderColor = "white"
+    light_mode_button.style.backgroundColor = "#2D2D2D"
+    light_mode_button.style.color = "white"
+    light_mode_button.style.borderColor = "white"
+    dark_mode_button.style.backgroundColor = "#2D2D2D"
+    dark_mode_button.style.color = "white"
+    dark_mode_button.style.borderColor = "white"
+    body.className = "dark-mode"
 }
