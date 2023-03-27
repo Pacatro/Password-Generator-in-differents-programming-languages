@@ -1,25 +1,25 @@
 const pool = require('../database/db')
 
 class User {
+    #id
     #username
     #private_key
 
     constructor(username, private_key){
         this.#username = username
         this.#private_key = private_key
+        this.#id = `(SELECT id FROM users WHERE user = '${this.#username}' AND private_key = '${this.#private_key}')`
 
         if(!this.#username || !this.#private_key){
             console.log('Username or private_key undefined')
-        }
+        }        
     }
 
     async is_in_db(){    
         const [result] = await pool.query(
-            `SELECT * FROM users WHERE user = '${this.#username}' AND private_key = '${this.#private_key}';`
+            `SELECT * FROM users WHERE id = ${this.#id};`
         )
         
-        console.log(result)
-
         return result.length > 0
     }
 
@@ -35,16 +35,9 @@ class User {
 
     async add_pass(reminder, gen_pass){
         try {
-            const [result] = await pool.query(
-                `SELECT id FROM users WHERE user = '${this.#username}' AND private_key = '${this.#private_key}';`
-            )
-
-            let id = result[0].id
-
             await pool.query(
-                `INSERT INTO passwords(user_id, reminder, generated_pass) VALUES (${id}, '${reminder}', '${gen_pass}');`
+                `INSERT INTO passwords(user_id, reminder, generated_pass) VALUES (${this.#id}, '${reminder}', '${gen_pass}');`
             )
-
         } catch(err) {
             throw err
         }

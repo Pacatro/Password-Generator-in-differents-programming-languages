@@ -51,4 +51,22 @@ router.post('/account', urlencodedParser, async (req, res) => {
     res.redirect('/')
 })
 
+router.post('/historial', urlencodedParser, async (req, res) => {
+    username = req.body.username
+    private_key = req.body.private_key
+    reminder = req.body.reminder
+
+    let user = new User(username, private_key)
+
+    const found = await user.is_in_db()
+
+    if(found){
+       return res.send('historial')
+    } else {
+        return res.redirect('/account')
+    }
+
+    res.redirect('/')
+})
+
 module.exports = router
