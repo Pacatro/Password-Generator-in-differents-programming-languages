@@ -8,6 +8,9 @@ const app = express()
 const port = config.PORT || 8000
 const url = 'http://localhost:' + port
 
+app.set('views', path.join(__dirname, '../client/views'))
+app.set('view engine', 'ejs')
+
 app.use('/', express.static(path.join(__dirname, '../client')))
 app.use('/save', express.static(path.join(__dirname, '../client/save_form')))
 app.use('/account', express.static(path.join(__dirname, '../client/account_form')))

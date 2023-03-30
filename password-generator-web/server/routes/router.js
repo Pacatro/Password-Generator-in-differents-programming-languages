@@ -10,6 +10,10 @@ let username
 let private_key
 let reminder
 
+const capitalize = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
 router.post('/get_data', urlencodedParser, (req, res) => {
     gen_pass = req.body.gen_pass
 
@@ -25,11 +29,9 @@ router.post('/save', urlencodedParser, async (req, res) => {
 
     const found = await user.is_in_db()
 
-    if(found){
-       user.add_pass(reminder, gen_pass)
-    } else {
-        return res.redirect('/account')
-    }
+    found ? user.add_pass(reminder, gen_pass) : res.redirect('/account')
+
+    delete user
 
     res.redirect('/')
 })
@@ -42,11 +44,9 @@ router.post('/account', urlencodedParser, async (req, res) => {
 
     const found = await user.is_in_db()
 
-    if(!found){
-        user.register()
-    } else {
-        return res.send("YA EXISTE")
-    }
+    found ? res.send("YA EXISTE") : user.register()
+
+    delete user
 
     res.redirect('/')
 })
@@ -60,13 +60,14 @@ router.post('/historial', urlencodedParser, async (req, res) => {
 
     const found = await user.is_in_db()
 
-    if(found){
-       return res.send('historial')
-    } else {
-        return res.redirect('/account')
+    const historial = await user.get_historial()
+
+    if(historial == []){
+        delete user
+        return res.redirect('/')
     }
 
-    res.redirect('/')
+    found ? res.render('historial', {user: capitalize(user.username), historial: historial}) : res.redirect('/account')
 })
 
 module.exports = router

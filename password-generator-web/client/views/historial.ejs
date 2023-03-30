@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="./styles.css" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+        href="https://fonts.googleapis.com/css2?family=Cabin&family=Montserrat:wght@500&family=Oxygen&display=swap"
+        rel="stylesheet"
+        />
+        <title>Historial</title>
+    </head>
+    <body>
+        <section class="historial">
+            <div class="Title" id="title-div">
+                <h1 id="title"> <%= user %> historial</h1>
+            </div>
+            <div class="hist-table">
+                <% historial.forEach((user) => { %>
+                    <h1> <%= user.reminder %> -> <%= user.generated_pass %></h1>
+                <% }) %>
+            </div>
+        </section>
+    </body>
+</html>

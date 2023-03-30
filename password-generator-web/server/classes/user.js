@@ -43,6 +43,19 @@ class User {
         }
     }
 
+    async get_historial(){
+        try {
+            const [result] = await pool.query(
+                `SELECT reminder, generated_pass FROM passwords WHERE user_id = ${this.#id}`
+            )
+
+            return result
+            
+        } catch(err) {
+            throw err
+        }
+    }
+
     get username() {return this.#username}
     get private_key() {return this.#private_key}
 

@@ -74,6 +74,7 @@ const light_mode = () => {
     let light_mode_button = document.getElementById("light-button")
     let dark_mode_button = document.getElementById("dark-button")
     let account_button = document.getElementById("account")
+    let historial_button = document.getElementById("historial")
 
     button.style.color = "black"
     button.style.backgroundColor = "white"
@@ -100,6 +101,9 @@ const light_mode = () => {
     account_button.style.backgroundColor = "white"
     account_button.style.color = "black"
     account_button.style.borderColor = "black"
+    historial_button.style.backgroundColor = "white"
+    historial_button.style.color = "black"
+    historial_button.style.borderColor = "black"
     element.className = "light-mode"
 }
 
@@ -115,6 +119,7 @@ const dark_mode = () => {
     let light_mode_button = document.getElementById("light-button")
     let dark_mode_button = document.getElementById("dark-button")
     let account_button = document.getElementById("account")
+    let historial_button = document.getElementById("historial")
 
     button.style.color = "white"
     button.style.backgroundColor = "#2D2D2D"
@@ -141,5 +146,8 @@ const dark_mode = () => {
     account_button.style.backgroundColor = "#2D2D2D"
     account_button.style.color = "white"
     account_button.style.borderColor = "white"
+    historial_button.style.backgroundColor = "#2D2D2D"
+    historial_button.style.color = "white"
+    historial_button.style.borderColor = "white"
     body.className = "dark-mode"
 }
